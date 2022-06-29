@@ -15,6 +15,7 @@ const StyledAlbumCard = styled.article`
     grid-template-columns: 1fr 2fr;
     grid-template-areas:    'album-cover album-name'
                             'album-cover artist-name'
+                            'album-cover released-date'
                 ;
 
     .img-container {
@@ -23,6 +24,7 @@ const StyledAlbumCard = styled.article`
         img {
             display: block;
             max-width: 100%;
+            object-fit: cover;
             height: auto;
         }
     }
@@ -37,7 +39,21 @@ const StyledAlbumCard = styled.article`
     .artist-name {
         grid-area: artist-name;
         align-self: start;
-        margin: .5em 1em 1em;
+        font-size: .75rem;
+        margin: .2rem 1rem 1rem;
+    }
+
+    .released-date {
+        grid-area: released-date;
+        font-size: .875rem;
+        font-weight: 700;
+        margin: 0 1rem 1rem;
+        display: flex;
+        justify-content: space-between;
+
+        .date {
+            font-weight: 300;
+        }
     }
 `
 

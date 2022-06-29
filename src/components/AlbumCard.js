@@ -28,6 +28,7 @@ const AlbumCard = ({ albumData: { id, queryParamValue, name, date }}) => {
             </div>
             <p className="album-name">{name}</p>
             <p className="artist-name">{artist}</p>
+            <p className="released-date">Release Date <span className='date'>{date}</span></p>
 
         </StyledAlbumCard>
     )
