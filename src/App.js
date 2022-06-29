@@ -1,3 +1,4 @@
+import StyledApp from './App.styled'
 import { ThemeProvider } from 'styled-components'
 
 import GlobalStyles from './components/styles/Global'
@@ -18,10 +19,10 @@ const theme = {
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <>
+      <StyledApp>
         <GlobalStyles />
         <h1>App</h1>
-      </>
+      </StyledApp>
     </ThemeProvider>
   );
 }
