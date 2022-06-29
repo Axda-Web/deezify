@@ -1,18 +1,20 @@
 import StyledAlbumsContainer from './styles/AlbumsContainer.styled'
 
-import AlbumDetails  from './AlbumDetails'
 import AlbumCard from './AlbumCard'
 
 
-const AlbumsContainer = ({ albumsData, filteredAlbumsData, showAlbumDetails }) => {
+const AlbumsContainer = ({ albumsData, filteredAlbumsData, handleAlbumCardClick }) => {
 
     const dataToDisplay = filteredAlbumsData.length > 0 ? filteredAlbumsData : albumsData
-    const cards = dataToDisplay.map( albumData => <AlbumCard key={albumData.id} albumData={albumData} /> )
+    const cards = dataToDisplay.map( albumData => <AlbumCard    key={albumData.id} 
+                                                                albumData={albumData}
+                                                                handleAlbumCardClick={handleAlbumCardClick}
+                                                            /> )
 
 
     return (
         <StyledAlbumsContainer>
-            { showAlbumDetails ? <AlbumDetails /> : cards }
+            {cards}
         </StyledAlbumsContainer>
     )
 }

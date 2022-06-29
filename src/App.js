@@ -6,6 +6,7 @@ import GlobalStyles from './components/styles/Global'
 
 import Header from './components/Header'
 import AlbumsContainer from './components/AlbumsContainer'
+import AlbumDetails from './components/AlbumDetails'
 
 const theme = {
   colors: {
@@ -86,6 +87,7 @@ function App() {
   const [filteredAlbumsData, setFilteredAlbumsData] = useState([])
   const [searchKeyword, setSearchKeyword] = useState('')
   const [showAlbumDetails, setShowAlbumDetails] = useState(false)
+  const [selectedAlbumCardData, setSelectedAlbumCardData] = useState({})
 
   useEffect( () => {
       if (searchKeyword && searchKeyword.length > 3){
@@ -98,13 +100,13 @@ function App() {
   
 
   //Search Album input
-  const handleSearchChange = (e) => {
+  const handleSearchChange = e => {
     const { value } = e.target
     setSearchKeyword(value)
   }
 
   //Sort by date btn
-  const handleSortByDateClick = (e) => {
+  const handleSortByDateClick = e => {
     const sortedData = [...albumsData].sort((a, b) => {
       let dateA = new Date(a.date)
       let dateB = new Date(b.date)
@@ -115,7 +117,7 @@ function App() {
   }
 
   //Sort by date btn
-  const handleSortByNameClick = (e) => {
+  const handleSortByNameClick = e => {
     const sortedData = [...albumsData].sort((a, b) => {
       let nameA = a.name.toLowerCase()
       let nameB = b.name.toLowerCase()
@@ -130,13 +132,23 @@ function App() {
       })
 
       setAlbumsData(sortedData)
-    
+  }
+
+  // Display de details of the selected album
+  const handleAlbumCardClick = data => {
+  setShowAlbumDetails( prevState => !prevState)
+  setSelectedAlbumCardData(data)
+  }
+
+  // Close album details modal
+  const handleCloseAlbumDetailsClick = e => {
+    setShowAlbumDetails( prevState => !prevState)
   }
 
 
   return (
     <ThemeProvider theme={theme}>
-      <StyledApp>
+      <StyledApp showAlbumDetails={showAlbumDetails}>
         <GlobalStyles />
         <Header handleSearchChange={handleSearchChange}
                 searchKeyword={searchKeyword}
@@ -144,8 +156,10 @@ function App() {
                 handleSortByNameClick={handleSortByNameClick}
               />
         <AlbumsContainer  albumsData={albumsData}
-                          showAlbumDetails={showAlbumDetails}
-                          filteredAlbumsData={filteredAlbumsData} />
+                          filteredAlbumsData={filteredAlbumsData}
+                          handleAlbumCardClick={handleAlbumCardClick}
+                        />
+        { showAlbumDetails && <AlbumDetails  data={selectedAlbumCardData} handleCloseAlbumDetailsClick={handleCloseAlbumDetailsClick} /> }
       </StyledApp>
     </ThemeProvider>
   );

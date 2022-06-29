@@ -11,7 +11,7 @@ const SearchInput = ({ handleSearchChange, searchKeyword }) => {
             <FaSearch className='search__icon' />
             <input  id="search"
                     type="search"
-                    class="search__input"
+                    className="search__input"
                     placeholder="Search for albums..."
                     aria-label="Search for albums..."
                     value={searchKeyword}
