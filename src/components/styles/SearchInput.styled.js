@@ -1,19 +1,7 @@
 import styled from "styled-components";
 
-const StyledHeader = styled.header`
-    
-    padding: 2em;
-
-    .logo {
-        display: flex;
-        justify-content: center;
-        align-items: baseline;
-        column-gap: .3em;
-        font-weight: 900;
-        font-size: 3rem;
-    }
-
-    .search {
+const StyledSearchInput = styled.div`
+.search {
     position: relative;
 
     &__input {
@@ -33,7 +21,6 @@ const StyledHeader = styled.header`
         top: .8em;
     }
 }
-
 `
 
-export default StyledHeader
+export default StyledSearchInput

@@ -4,9 +4,10 @@ import AlbumDetails  from './AlbumDetails'
 import AlbumCard from './AlbumCard'
 
 
-const AlbumsContainer = ({ albumsData, showDetails }) => {
+const AlbumsContainer = ({ albumsData, filteredAlbumsData, showDetails }) => {
 
-    const cards = albumsData.map( albumData => <AlbumCard key={albumData.id} albumData={albumData} /> )
+    const dataToDisplay = filteredAlbumsData.length > 0 ? filteredAlbumsData : albumsData
+    const cards = dataToDisplay.map( albumData => <AlbumCard key={albumData.id} albumData={albumData} /> )
 
 
     return (

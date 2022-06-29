@@ -83,16 +83,34 @@ function App() {
     name: 'Unlimited Love',
     date: '2022-04-1'
   }])
-
+  const [filteredAlbumsData, setFilteredAlbumsData] = useState([])
+  const [searchKeyword, setSearchKeyword] = useState('')
   const [showDetails, setShowDetails] = useState(false)
+
+  useEffect( () => {
+      if (searchKeyword && searchKeyword.length > 3){
+        let filteredData = [...albumsData].filter( album => album.name.toLocaleLowerCase().includes(searchKeyword.toLocaleLowerCase()))
+        setFilteredAlbumsData(filteredData)
+      } else {
+        setFilteredAlbumsData([])
+      }
+  }, [searchKeyword])
+  
+
+  const handleSearchChange = (e) => {
+    const { value } = e.target
+    setSearchKeyword(value)
+  }
 
 
   return (
     <ThemeProvider theme={theme}>
       <StyledApp>
         <GlobalStyles />
-        <Header />
-        <AlbumsContainer albumsData={albumsData} showDetails={showDetails} />
+        <Header handleSearchChange={handleSearchChange} searchKeyword={searchKeyword} />
+        <AlbumsContainer  albumsData={albumsData}
+                          showDetails={showDetails}
+                          filteredAlbumsData={filteredAlbumsData} />
       </StyledApp>
     </ThemeProvider>
   );
