@@ -7,7 +7,7 @@ const StyledSearchInput = styled.div`
     &__input {
         display: block;
         width: 100%;
-        border: 1px solid inherit;
+        border: 2px solid #000;
         font-size: 1rem;
         padding: 1em;
         margin: 2em 0;

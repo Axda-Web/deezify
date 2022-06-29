@@ -4,7 +4,7 @@ import AlbumDetails  from './AlbumDetails'
 import AlbumCard from './AlbumCard'
 
 
-const AlbumsContainer = ({ albumsData, filteredAlbumsData, showDetails }) => {
+const AlbumsContainer = ({ albumsData, filteredAlbumsData, showAlbumDetails }) => {
 
     const dataToDisplay = filteredAlbumsData.length > 0 ? filteredAlbumsData : albumsData
     const cards = dataToDisplay.map( albumData => <AlbumCard key={albumData.id} albumData={albumData} /> )
@@ -12,7 +12,7 @@ const AlbumsContainer = ({ albumsData, filteredAlbumsData, showDetails }) => {
 
     return (
         <StyledAlbumsContainer>
-            { showDetails ? <AlbumDetails /> : cards }
+            { showAlbumDetails ? <AlbumDetails /> : cards }
         </StyledAlbumsContainer>
     )
 }

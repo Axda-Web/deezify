@@ -85,7 +85,7 @@ function App() {
   }])
   const [filteredAlbumsData, setFilteredAlbumsData] = useState([])
   const [searchKeyword, setSearchKeyword] = useState('')
-  const [showDetails, setShowDetails] = useState(false)
+  const [showAlbumDetails, setShowAlbumDetails] = useState(false)
 
   useEffect( () => {
       if (searchKeyword && searchKeyword.length > 3){
@@ -97,9 +97,40 @@ function App() {
   }, [searchKeyword])
   
 
+  //Search Album input
   const handleSearchChange = (e) => {
     const { value } = e.target
     setSearchKeyword(value)
+  }
+
+  //Sort by date btn
+  const handleSortByDateClick = (e) => {
+    const sortedData = [...albumsData].sort((a, b) => {
+      let dateA = new Date(a.date)
+      let dateB = new Date(b.date)
+      return dateB - dateA
+    })
+
+    setAlbumsData(sortedData)
+  }
+
+  //Sort by date btn
+  const handleSortByNameClick = (e) => {
+    const sortedData = [...albumsData].sort((a, b) => {
+      let nameA = a.name.toLowerCase()
+      let nameB = b.name.toLowerCase()
+  
+      if (nameA < nameB) {
+      return -1;
+      }
+      if (nameA > nameB) {
+      return 1;
+      }
+      return 0;
+      })
+
+      setAlbumsData(sortedData)
+    
   }
 
 
@@ -107,9 +138,13 @@ function App() {
     <ThemeProvider theme={theme}>
       <StyledApp>
         <GlobalStyles />
-        <Header handleSearchChange={handleSearchChange} searchKeyword={searchKeyword} />
+        <Header handleSearchChange={handleSearchChange}
+                searchKeyword={searchKeyword}
+                handleSortByDateClick={handleSortByDateClick}
+                handleSortByNameClick={handleSortByNameClick}
+              />
         <AlbumsContainer  albumsData={albumsData}
-                          showDetails={showDetails}
+                          showAlbumDetails={showAlbumDetails}
                           filteredAlbumsData={filteredAlbumsData} />
       </StyledApp>
     </ThemeProvider>

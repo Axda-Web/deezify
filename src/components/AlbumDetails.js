@@ -8,6 +8,7 @@ const AlbumDetails = () => {
 
     return (
         <StyledAlbumDetails>
+            <div>Album Details</div>
             <SongsContainer />
         </StyledAlbumDetails>
     )
